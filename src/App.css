@@ -3,7 +3,7 @@
     text-align: center;
     width: 3em;
     font-size: 2em;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(53, 3, 3, 0.2);
     margin: 1em;
     user-select: none;
    }
@@ -12,13 +12,13 @@
        color: red;
        background: pink;
    }
-   .newgmae{
+   .cardblock{
     display: inline-block;
+    color: rgb(148, 24, 24)78, 32, 32);
     text-align: center;
     width: 3em;
     font-size: 2em;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    margin: 1em;
+    box-shadow: 0 4px 8px 0 rgba(61, 241, 6, 0.2);
     user-select: none;
    }
    
