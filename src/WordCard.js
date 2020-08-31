@@ -9,8 +9,10 @@ const prepareStateFromWord = given_word => {
         word,
         chars,
         attempt: 1,
+        times: 5,
         guess: '',
-        completed: false
+        completed: false,
+        
     }
 }
 
@@ -27,9 +29,12 @@ export default function WordCard(props){
             if(guess == state.word){
                 console.log('yeah!!!! Times you Attempt:',state.attempt)
                 setState({...state, completed: true})
+            }else if(state.times !=0){
+                console.log('reset, next attempt times to try',state.times)
+                setState({...state, guess: '', attempt: state.attempt +1,times: state.times -1})
+                
             }else{
-                console.log('reset, next attempt')
-                setState({...state, guess: '', attempt: state.attempt +1})
+                console.log('Game Over')
             }
         }
         
