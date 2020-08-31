@@ -7,12 +7,12 @@ const prepareStateFromWord = given_word => {
     let word = given_word.toUpperCase() 
     let chars = _.shuffle(Array.from(word))
     return{
-        answer: '',
         word,
         chars,
         attempt: 1,
         times: 2,
         guess: '',
+        answer: '',
         completed: false,
         
     }
@@ -30,8 +30,9 @@ export default function WordCard(props){
         if(guess.length == state.word.length){
             if(guess == state.word){
                 // console.log('yeah!!!! Times you Attempt:',state.attempt)
-                gamecomplete()
-                window.location.reload(false);
+                setState({...state, guess: '', answer: state.answer = props.value})
+                setTimeout(() => {  gamecomplete() }, 4000);
+                setTimeout(() => {   window.location.reload(false)}, 4000);
                 setState({...state, completed: true})
             }else if(state.times !=0){
                 console.log('reset, next attempt times to try',state.times)
@@ -40,8 +41,9 @@ export default function WordCard(props){
             }else{
                 console.log('Game Over')
                 setState({...state, guess: '', answer: state.answer = props.value})
-                gameover();
-                window.location.reload(false);
+                setTimeout(() => {  gameover() }, 4000);
+                setTimeout(() => {   window.location.reload(false)}, 4000);
+                
                 
             }
         }
@@ -56,7 +58,7 @@ export default function WordCard(props){
         <br></br>
         Times remaining : {state.times+1}
         <br></br>
-        Answer : {state.answer}
+        answer = {state.answer}
       </div>
             {
                 state.chars.map((c, i) => 
@@ -77,9 +79,11 @@ function gameover() {
 function gamecomplete() {
     var x = Math.floor(Math.random() * 2);
     if (x == 0) {
+       
       alert("congrat!!!!!");
     }
     if (x == 1) {
+        
       alert("Yeah!!!!!!!");
     }
   }
