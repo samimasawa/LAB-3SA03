@@ -26,4 +26,8 @@ export default function CharacterCard(props) {
     return (
         <div className={className} onClick={activate}>{props.value}</div>
     )
+    // const className = `newgame ${active ? 'activenemgame': ''}`
+    // return (
+    //     <div className={className} onClick={activate}>{props.value}</div>
+    // )
 }

@@ -1,15 +1,17 @@
 import React, { useState, } from 'react';
-import _, { attempt } from 'lodash';
+import _, { attempt, words, times, set } from 'lodash';
 import CharacterCard from './CharacterCard';
 
+
 const prepareStateFromWord = given_word => {
-    let word = given_word.toUpperCase()
+    let word = given_word.toUpperCase() 
     let chars = _.shuffle(Array.from(word))
     return{
+        answer: '',
         word,
         chars,
         attempt: 1,
-        times: 5,
+        times: 2,
         guess: '',
         completed: false,
         
@@ -27,7 +29,9 @@ export default function WordCard(props){
         setState({...state, guess})
         if(guess.length == state.word.length){
             if(guess == state.word){
-                console.log('yeah!!!! Times you Attempt:',state.attempt)
+                // console.log('yeah!!!! Times you Attempt:',state.attempt)
+                gamecomplete()
+                window.location.reload(false);
                 setState({...state, completed: true})
             }else if(state.times !=0){
                 console.log('reset, next attempt times to try',state.times)
@@ -35,12 +39,25 @@ export default function WordCard(props){
                 
             }else{
                 console.log('Game Over')
+                setState({...state, guess: '', answer: state.answer = props.value})
+                gameover();
+                window.location.reload(false);
+                
             }
         }
-        
     }
+
     return(
         <div>
+            <div class="textshow">
+        GAME CARD
+        <br></br>
+        Attempt : {state.attempt}
+        <br></br>
+        Times remaining : {state.times+1}
+        <br></br>
+        Answer : {state.answer}
+      </div>
             {
                 state.chars.map((c, i) => 
                 <CharacterCard value={c} key={i} activationHandler={activationHandler} attempt={state.attempt}/>)
@@ -48,3 +65,22 @@ export default function WordCard(props){
         </div>
     )
 }
+function gameover() {
+    var x = Math.floor(Math.random() * 2);
+    if (x == 0) {
+      alert("You lose!!!!");
+    }
+    if (x == 1) {
+      alert("try again");
+    }
+  }
+function gamecomplete() {
+    var x = Math.floor(Math.random() * 2);
+    if (x == 0) {
+      alert("congrat!!!!!");
+    }
+    if (x == 1) {
+      alert("Yeah!!!!!!!");
+    }
+  }
+
